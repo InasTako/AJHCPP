@@ -1,119 +1,111 @@
 #include <iostream> 
 using namespace std; 
 
-// 레퍼런스 연산자의 경우
+// 깊은 복사란?
+// 참조값이 아닌 인스턴스를 새로 복사하여 실제값을 복사하는 방법입니다.
 /*
-// 포인터를 이용하여 연산을 허용하지 않습니다.
-
-// 참조자를 사용하는 이유
-// 
-void Function(int & x) // <- 1000 mb
+class Object
 {
-    x = 100;
-}
-*/
-
-// 인라인 함수
-/*
-// 함수를 호출하는 대신 함수가 호출되는 위치마다
-// 함수의 코드를 복사하여 전달하는 방식의 함수입니다.
-inline void Function()
-{
-    cout << "공격" << endl;
-}
-*/
-
-// 캡슐화
-/*
-class cellPhone
-{
+    // 속성
 private:
-    int brightness;
-    int volume;
-
-    bool power;
+    // m(멤버)_변수이름
+    int m_position;
+    float m_size;
+    int* m_memory;
 
 public:
-    // 값을 접근하는 함수(Setter)
-    // 값을 읽는 함수 (Getter)
-    
-    // Setter() 함수
-    void SetVolume(int x)
+    // 생성자는 public으로 해주셔야 합니다.
+    Object(int position, float size)
     {
-        volume = x;
-    }
-    // Getter() 함수
-    int GetVolume()
-    {
-        return volume;
+        m_position = position;
+        m_size = size;
+        
+        m_memory = new int(10);
+
+        cout << "memory 값 : " << *m_memory << endl;
+        cout << "position 값 : " << m_position << endl;
+        cout << "size 값 : " << m_size << endl;
     }
 
-    void SoundVolume(int volumeValue)
+    // 복사 생성자
+    // 같은 클래스의 객체로 부터 '복사'해서 새로운 객체를 생성하는 생성자입니다.
+
+    // 복사 생성자에 인수로 &(레퍼런스)를 받는 이유
+    // 새로운 객체를 생성할 때 생기는 오버헤드 현상이 생기는 것을 방지하기 위해 선언합니다.
+    // const 복사된 데이터를 보호하기 위해 상수화를 합니다.
+    Object(const Object & copyObject) 
     {
-        if (volumeValue >= 100)
-        {
-            volumeValue = 100;
-        }
-        else if (volumeValue < 0)
-        {
-            volumeValue = 0;
-        }
-        volume = volumeValue;
+        m_memory = new int(*copyObject.m_memory);
+        m_position = copyObject.m_position;
+        m_size = copyObject.m_size;
 
-        cout << volume << endl;
+        cout << "memory 값 : " << *m_memory << endl;
+        cout << "position 값 : " << m_position << endl;
+        cout << "size 값 : " << m_size << endl;
     }
-    
-
+    // 객체가 소멸될 때 동적으로 할당한 메모리 공간을 해제합니다.
+    ~Object()
+    {
+        delete m_memory;
+    }
 };
 */
 
+// 기본 생성자
+// 프로그래머가 정의한 생성자가 없는 경우
+// 컴파일러가 자동으로 생성하는 생성자입니다.
+
+class Book
+{
+public:
+    string name;
+    int page;
+    // 기본 생성자의 경우 생성자가 하나라도 선언되어 있다면 
+    // 기본 생성자가 자동으로 생성되지 않습니다.  
+    // Book() {}; <- 생성자가 없는 기본 생성자를 생성합니다.
+    
+    Book()
+    {
+        cout << "생성자 호출" << endl;
+    }
+};
+
+class Cover : Book
+{
+        
+};
+
 int main()
 {
-    // 참조자란?
+    // 얕은 복사란?
     /*
-    // 자신이 참조하는 변수를 대신할 수 있는 또 하나의 이름입니다.
-    
-    // 하나의 메모리 공간에 2개의 이름이 존재하는 형태가 되는 것입니다.
-    int a = 10;
-    int & tvalue = a; 
-    int& ref = tvalue;
+    // 값을 복사하는데 인스턴스가 메모리에 새로 생성되지 않는 형태입니다.
+    // 그렇기 때문에 값 자체를 복사하는 것이 아니라 주소값을 복사하여 같은 메모리를 가리키게 하는 복사입니다.
 
-    // 참조자는 초기화를 하지 않으면 사용할 수 없습니다.
-    // 참조자는 NULL로도 초기화를 할 수 없습니다.
-    int b = 20;
+    int * a = new int(10); // 동적으로 메모리 공간을 할당합니다.
+    int * b = new int(20);
 
-    int & va = a;
-    va = b;
-    
-    cout << a << endl;
+    cout << "a의 값 : " << *a << endl;
+    cout << "b의 값 : " << *b << endl;
 
-    Function(a);
-    */
-    
-    // 인라인 함수
-    /*
-    // 함수 안에 있는 내용이 간단할 때 사용해야 합니다.
-    // 함수가 여러 번 호출되는 함수일 경우 인라인 함수를 사용하면
-    // 컴파일 크기가 커지게 됩니다.
-    Function();
-    */
+    // 얕은 복사가 발생합니다.
+    a = b;
+    *b = 100;
 
-    // 객체 지향 프로그래밍
-    // 여러 개의 객체들끼리 상호작용을 통해
-    // 로직을 구성하는 프로그래밍 방법입니다.
+    cout << "a의 값 : " << *a << endl;
+    cout << "b의 값 : " << *b << endl;
 
+    delete a;
+    delete b;
+   
 
-    // 캡슐화
-    /*
-    // 클래스의 속성(변수)과 기능(함수)를 하나로 묶은 다음
-    // 실제 구현 내용의 일부를 내부에 감추어 은닉하는 함수입니다.
+    // 생성자에 매개변수가 있다면 클래스를 인스턴스할 때 클래스에 인수를 넣어주어야 합니다.
+    Object cat1(10, 5.5);
+    Object cat2 = cat1;
+     */
 
-    cellPhone iphone;
-    iphone.SetVolume(10);
-
-    cout << iphone.GetVolume() << endl;
-    */
-
+    Book book1;
+    Cover cover;
 
     return 0;
 
