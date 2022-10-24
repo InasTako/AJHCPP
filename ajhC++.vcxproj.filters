@@ -35,5 +35,8 @@
     <ClInclude Include="22.10.20(얕은복사와 깊은복사).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.10.21(가상 함수).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
