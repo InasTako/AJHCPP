@@ -136,6 +136,7 @@
     <ClInclude Include="22.10.19(참조자).h" />
     <ClInclude Include="22.10.20(얕은복사와 깊은복사).h" />
     <ClInclude Include="22.10.21(가상 함수).h" />
+    <ClInclude Include="22.10.24%28추상 클래스%29.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
