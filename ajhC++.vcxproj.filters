@@ -41,5 +41,8 @@
     <ClInclude Include="22.10.24%28추상 클래스%29.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.10.26%28가상 상속%29.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
