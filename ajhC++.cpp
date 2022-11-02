@@ -1,147 +1,108 @@
-#include <iostream> 
-#include <vector>
-using namespace std; 
+#include <iostream>
+using namespace std;
 
-// 템플릿(클래스와 함수)
-// 데이터의 형식에 의존하지 않고, 하나의 값이 여러 다른 데이터
-// 타입을 가질 수 있는 기능입니다.
-
-// 컴파일러는 미리 함수의 형틀을 기억한 다음 함수가 호출될 때 
-// 실제 함수를 호출합니다.
-
-// 함수 템플릿은 선언이기 때문에 메모리 할당과 구체화되지 
-// 않은 상태입니다.
-
-// 함수 템플릿
-/*
-template <typename T>
-void Calculator(T x, T y)
+// 멤버 이니셜라이저
+// 생성자의 역할을 대신하여 초기화할 수 있는 목록입니다.
+class Person
 {
-    cout << "x의 값 : " << x << endl;
-    cout << "y의 값 : " << y << endl;
-}
-*/
-
-// 클래스 템플릿
-/*
-template <class T>
-class Game
-{
-    T num1;
-    T num2;
 public:
-    Game(T _num1, T _num2)
-    {
-        num1 = _num1;
-        num2 = _num2;
-    }
+    int x = 10;
 
-    T GetNumber1()
+    // 멤버 이니셜라이저를 사용하면 초기화의 대상을 명확히 인식할 수 있습니다.
+    // 그리고 선언과 동시에 초기화가 이루어지기 때문에 바이너리 코드가 생성되므로
+    // 속도적인 면에서도 이점을 가질 수 있습니다.
+    /*
+    Person(int _x , int _y) : x(_x), y(_y)
     {
-        return num1;
+        cout << "x의 값 : " << x << endl;
+        cout << "y의 값 : " << y << endl;
     }
-    T GetNumber2()
+    */
+};
+
+class Child : public Person
+{
+public:
+    void ChildInfo()
     {
-        return num2;
+        cout << "Child 클래스입니다." << endl;
+        cout << b << endl;
+    }
+    float b = 3.65;
+};
+class Child2 : public Person
+{
+public:
+    void ChildInfo()
+    {
+        cout << "Child2 클래스입니다." << endl;
+        cout << c << endl;
+    }
+    int c = 5;
+};
+
+
+// static_cast
+// 기본 자료형의 형변환 및 상위 클래스에서 하위 클래스로의 포인터 변환 연산에
+// 사용되는 연산자입니다.
+// 컴파일 시점에 형변환을 검토합니다.
+
+
+// dynamic_cast
+// 캐스팅을 성공할 경우 주소값을 반환하고, 실패할 경우 nullptr을 반환하는 캐스팅입니다.
+
+// dynamic_cast의 주의점
+// 1. 객체 포인터간의 형 변환만 가능합니다.
+// 2. virtual 키워드가 단 하나라도 존재하는 상속관계에서만 가능합니다.
+
+class A
+{
+public:
+    virtual void Function()
+    {
+        cout << "A클래스" << endl;
     }
 };
-*/
-
-// 템플릿 특수화
-/*
-// 템플릿에서 미리 지정해놓은 타입이 들어왔을 경우
-// 따로 처리하고 있는 때 사용하는 템플릿 기능입니다.
-template <typename T>
-void Add(T x, T y)
+class B : public A
 {
-    cout << "x의 값 : " << x << endl;
-    cout << "y의 값 : " << y << endl;
-}
-template<> // <- 템플릿 특수화
-void Add(int x, int y) // <- Add()함수로 호출할 때 int 매개변수로
-{                      // 들어오게 되면 이 함수를 처리하겠다.
-
-}
-*/
-
-// STL (Standart Template Library)
-// 표준 템플릿 라이브러리
-// 자료구조와 알고리즘을 Template 형태로 제공하는 라이브러리입니다. 
+public:
+    void Function()
+    {
+        cout << "B클래스" << endl;
+    }
+};
 
 int main()
 {
-    // 함수 템플릿
+    // 멤버 이니셜 라이저
+    // Person person1(10, 20);
+
+    // static_cast
     /*
-    Calculator(10, 20);
+    Person * ptr1 = new Child2();
+
+    // static_cast는 잘못된 상속관계의 형변환을 오류를 잡아주지 않습니다.
+    Child2* cptr1 = static_cast<Child2*>(ptr1);
+    cptr1->ChildInfo();
+    // int value = 10;
+    // static_cast가 없다면 기본 자료형이 클래스로 형변환되는 과정이 발생합니다.
+    // Child * c = (Child*)value;
+
+    // 논리적으로 변환 가능한 타입을 변환합니다.
+    // static_cast<바꾸려고 하는 타입>(대상) 
+    // 컴파일 시점에 형변환에 대한 타입 오류를 표시합니다.
+    */
     
-    Calculator(10.5f, 6.7f);
+    // dynamic_cast
+    A * aptr = new A();
+    A * bptr = new B();
+    B * bptr2 = new B();
+    B * bptr3 = nullptr;
 
-    Calculator('A', 'B');
-    */
+    // 컴파일 오류 : 타입변환 불가
+    // bptr3 = aptr;
 
-    // 클래스 템플릿
-    /*
-    Game<int> game1(10, 20);
-    cout << game1.GetNumber1() << endl;
-    cout << game1.GetNumber2() << endl;
-
-    Game<float> game2(8.5f, 9.6f);
-    cout << game2.GetNumber1() << endl;
-    cout << game2.GetNumber2() << endl;
-    */
-
-    // 템플릿 특수화
-    /*
-    Add(10, 20);
-    */
-
-    // STL의 구성
-    /*
-// 1. 컨테이너
-// 데이터를 저장하는 객체, 자료구조를 모아둔 집합입니다.
-// - A : 순차 컨테이너
-//       자료를 순차적으로 저장하는 컨테이너입니다.
-// - B : 연관 컨테이너
-//       트리 구조로 구성되어 있는 컨테이너입니다.
-//       검색 및 삽입 그리고 삭제가 빠르다.
-// - C : 컨테이너 어댑터
-//       기존의 컨테이너 일부의 기능만 사용 가능하게 하여
-//       기능이 제한되거나 변형되어 있는 컨테이너입니다.
-    */
-
-    // Vector
-    /*
-    // 동적으로 원소를 추가할 수 있으며, 크기가 자동으로 늘어나는 
-    // 컨테이너입니다.
-
-    vector<int> data;
-
-    // vector의 fush_back은 뒤에서 부터 데이터를 넣어줍니다.
-    data.push_back(10);
-    data.push_back(5);
-
-    // vector의 pop_back은 뒤에서부터 데이터를 뺍니다.
-    data.pop_back();
-
-    // vector의 size는 vector가 가지고 있는 컨테이너의 크기를 반환합니다. 
-    data.size();
-
-    for (int i = 0; i < data.size(); i++)
-    {
-        cout << data[i] << endl;
-    }
-
-    // vector의 front는 맨 앞에 있는 원소를 출력합니다.
-    cout << data.front() << endl;
-    // vector 같은 경우에는 맨 앞에 원소를 추가할 수 없습니다.
-    */
-
-
-    // list
-    // Deque
-
-    
-
-
+    // 컴파일 성공 : 컴파일에 타입변환에 실패하면 NULL을 반환합니다.
+    bptr3 = dynamic_cast<B*>(aptr);
     return 0;
 }

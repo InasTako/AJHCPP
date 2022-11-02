@@ -139,6 +139,8 @@
     <ClInclude Include="22.10.24%28추상 클래스%29.h" />
     <ClInclude Include="22.10.26%28가상 상속%29.h" />
     <ClInclude Include="22.10.27(스마트 포인터).h" />
+    <ClInclude Include="22.10.28%28템플릿%29.h" />
+    <ClInclude Include="22.11.01(업캐스팅과 다운캐스팅).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

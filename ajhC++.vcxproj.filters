@@ -47,5 +47,11 @@
     <ClInclude Include="22.10.27(스마트 포인터).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.10.28%28템플릿%29.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="22.11.01(업캐스팅과 다운캐스팅).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
