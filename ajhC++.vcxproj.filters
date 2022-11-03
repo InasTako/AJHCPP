@@ -53,5 +53,8 @@
     <ClInclude Include="22.11.01(업캐스팅과 다운캐스팅).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.02(멤버 이니셜라이저).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
