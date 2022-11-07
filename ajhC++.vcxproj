@@ -143,6 +143,7 @@
     <ClInclude Include="22.11.01(업캐스팅과 다운캐스팅).h" />
     <ClInclude Include="22.11.02(멤버 이니셜라이저).h" />
     <ClInclude Include="22.11.03(리스트).h" />
+    <ClInclude Include="22.11.04(스택과 큐).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
