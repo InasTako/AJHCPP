@@ -1,93 +1,75 @@
-#include <iostream>
-#include <map>
-#include <set>
+#include<iostream>
+#include<deque>
+#include<set>
+#include<stack>
 using namespace std;
 
 int main()
 {
-    // STL vector, list // 선형 컨테이너
-    // STL stack, queue // 컨테이너 어댑터
-    // STL map, set // 연관 컨테이너
- 
-    // MAP이란?
+    // STL
+    // 연관 컨테이너 Map, Set
+    // 선형 컨테이너 list, vector, deque
+    // 컨테니어 어댑터 stack, queue
+    
+    // deque
     /*
-    // 리스트나 배열처럼 순차적으로 해당 요소의 값을 
-    // 구하지 않고 key 값을 통해서 value 값을 얻습니다. 
-    std::map<string, int> mapData;
-    mapData.insert({ "검", 1000 });
-    mapData.insert({ "총", 4000 });
-    mapData.insert({ "옷", 2500 });
+    // 데이터가 들어오는 위치와 나가는 위치가 가장 뒤에 있고,
+    // 데이터가 나가는 위치와 들어오는 위치가 가장 앞에 있는 선형 컨테이너입니다.
+    std::deque<int> dequeData;
 
-    // (value)값은 중복 될 수 있지만, key 값은 고유한 값으로
-    // 중복이 되지않습니다.
+    dequeData.push_back(1);
+    dequeData.push_back(2);
+    dequeData.push_front(10);
+    dequeData.push_back(3);
+    dequeData.push_back(4);
 
-    for (auto iter = mapData.begin(); iter != mapData.end(); iter++)
+    // insert : 내가 삽입하고자 하는 위치, 해당 위치에 들어갈 값
+    dequeData.insert(dequeData.begin() + 2, 500);
+
+    // erase : 내가 삭제하고 있는 원소의 위치
+    dequeData.erase(dequeData.begin());
+
+    for (int i = 0; i < dequeData.size(); i++)
     {
-        // KEY : iter -> first로 접근해야 합니다.
-        // VALUE : iter -> second로 접근해야 합니다.
-        cout << "KEY : " << iter->first << " VALUE : " << iter->second << endl;
-    }
+        cout << dequeData.at(i) << endl;
 
-    // MAP은 키값을 기준으로 정렬하며, 오름차순으로 정렬합니다.
-    // 첫번째 주소를 가리키는 iterator가 mapData.end() 까지 순회하면서
-    // "신발" 이라는 Key값이 있다면 조건문을 실행합니다.
-    if (mapData.find("검") != mapData.end())
-    {
-        cout << "현재 KEY 값이 존재합니다." << endl;
-    }
-    else
-    {
-        cout << "현재 KEY 값이 존재하지 않습니다." << endl;
-    }
-
-    // 중복된 key값을 삽입하는 과정
-    // Map은 중복된 key값을 허용하지 않습니다.
-    mapData.insert({"검", 3000});
-
-    // value가 중복되면 mapData에 Insert가 허용됩니다.
-    mapData.insert({ "투구", 1000 });
-
-    // mapData에 있는 데이터를 삭제하려면 erase로 키값을 입력해주시면 됩니다.
-    mapData.erase({ "검" });
-
-
-    for (auto iter = mapData.begin(); iter != mapData.end(); iter++)
-    {
-        cout << "KEY : " << iter->first << " VALUE : " << iter->second << endl;
+        // [ ] 인덱스로 접근하여 출력하는 부분이 성능상 유리합니다.
+        cout << dequeData[i] << endl;
     }
     */
 
-    // SET이란?
+    // multi_set
     /*
-    // 키값으로만 원소들의 집합으로 이루어진 컨테이너입니다.
-    // SET 자료구조도 키값에 중복을 허용하지 않습니다.
-    std::set<int> setData;
+    // set과 다르게 중복된 원소를 컨테이너에 저장할 수 있는 자료구조입니다.
+    std::multiset<int> mSet;
+    mSet.insert(11);
+    mSet.insert(12);
+    mSet.insert(56);
+    mSet.insert(44);
+    mSet.insert(33);
+    mSet.insert(36);
+    mSet.insert(70);
+    mSet.insert(94);
+    
 
-    setData.insert(10);
-    setData.insert(20);
-    setData.insert(30);
-    setData.insert(40);
-    setData.insert(50);
-    setData.insert(60);
-
-    for (auto iter = setData.begin(); iter != setData.end(); iter++)
+    for (auto ither = mSet.begin(); ither != mSet.end(); ither++)
     {
-        cout << * iter << endl;
+        cout << *ither << endl;
     }
 
-    // 값이 중복되었는지, 안되었는지 판단합니다. 
-    // 중복된 값을 넣지 않으면 값이 SET 자료구조에 저장됩니다.
-    pair<set<int>::iterator, bool> check = setData.insert(15);
+    // mSet.count(?) : 현재 컨테이너에 ?라는 값이 몇 개 존재 하는지 출력해주는 함수입니다.
+    cout << "mSet에 7이라는 값은 현재 몇 개 존재하나요? : " << mSet.count(7) << endl;
 
-    if (check.second)
-    {
-        cout << "삽입 완료" << endl;
-    }
-    else
-    {
-        cout << "삽입 실패(중복된 값이 존재합니다.)" << endl;
-    }
+    // 4가 처음으로 나온 부분은 어디일까요?
+    multiset<int>::iterator start;
+
+    start = mSet.lower_bound(36);
+    cout << "4가 처음으로 나온 부분 : " << *start << endl;
     */
+
+    // Node(struct)
+    // stack, queue
+    std::stack<int> Stack;
 
 
     return 0;

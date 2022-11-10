@@ -144,6 +144,8 @@
     <ClInclude Include="22.11.02(멤버 이니셜라이저).h" />
     <ClInclude Include="22.11.03(리스트).h" />
     <ClInclude Include="22.11.04(스택과 큐).h" />
+    <ClInclude Include="22.11.07(MAP과 SET).h" />
+    <ClInclude Include="22.11.08(상속 관계).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

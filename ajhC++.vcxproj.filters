@@ -62,5 +62,11 @@
     <ClInclude Include="22.11.04(스택과 큐).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.08(상속 관계).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="22.11.07(MAP과 SET).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
