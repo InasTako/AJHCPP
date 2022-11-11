@@ -68,5 +68,8 @@
     <ClInclude Include="22.11.07(MAP과 SET).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.10(deque).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

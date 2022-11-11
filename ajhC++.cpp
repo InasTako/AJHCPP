@@ -1,76 +1,123 @@
 #include<iostream>
-#include<deque>
-#include<set>
 #include<stack>
+#include<unordered_map>
+#include<queue>
 using namespace std;
+
+// 스택 구현하기
+/*
+int stackArray[5];
+int top = -1;
+
+int Empty()
+{
+    if (top == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void Push(int x)
+{
+    stackArray[++top] = x;
+}
+
+int Top()
+{
+    if (top == 1)
+        return -1;
+    else 
+        return stackArray[top];
+}
+
+int Pop()
+{
+    return stackArray[top--];
+}
+
+int Size()
+{
+    return top + 1;
+}
+*/
 
 int main()
 {
-    // STL
-    // 연관 컨테이너 Map, Set
-    // 선형 컨테이너 list, vector, deque
-    // 컨테니어 어댑터 stack, queue
-    
-    // deque
+    // 스택 구현하기
     /*
-    // 데이터가 들어오는 위치와 나가는 위치가 가장 뒤에 있고,
-    // 데이터가 나가는 위치와 들어오는 위치가 가장 앞에 있는 선형 컨테이너입니다.
-    std::deque<int> dequeData;
+    // 1. pop    
+    // 2. push
+    // 3. size  : 현재 컨테이너에 들어있는 데이터의 개수
+    // 4. empty : Stack에 데이터가 비어있다면 1을 반환합니다.
+    //            Stack에 데이터가 있다면 0을 반환합니다.
+    // 5. top
 
-    dequeData.push_back(1);
-    dequeData.push_back(2);
-    dequeData.push_front(10);
-    dequeData.push_back(3);
-    dequeData.push_back(4);
-
-    // insert : 내가 삽입하고자 하는 위치, 해당 위치에 들어갈 값
-    dequeData.insert(dequeData.begin() + 2, 500);
-
-    // erase : 내가 삭제하고 있는 원소의 위치
-    dequeData.erase(dequeData.begin());
-
-    for (int i = 0; i < dequeData.size(); i++)
-    {
-        cout << dequeData.at(i) << endl;
-
-        // [ ] 인덱스로 접근하여 출력하는 부분이 성능상 유리합니다.
-        cout << dequeData[i] << endl;
-    }
-    */
-
-    // multi_set
-    /*
-    // set과 다르게 중복된 원소를 컨테이너에 저장할 수 있는 자료구조입니다.
-    std::multiset<int> mSet;
-    mSet.insert(11);
-    mSet.insert(12);
-    mSet.insert(56);
-    mSet.insert(44);
-    mSet.insert(33);
-    mSet.insert(36);
-    mSet.insert(70);
-    mSet.insert(94);
-    
-
-    for (auto ither = mSet.begin(); ither != mSet.end(); ither++)
-    {
-        cout << *ither << endl;
-    }
-
-    // mSet.count(?) : 현재 컨테이너에 ?라는 값이 몇 개 존재 하는지 출력해주는 함수입니다.
-    cout << "mSet에 7이라는 값은 현재 몇 개 존재하나요? : " << mSet.count(7) << endl;
-
-    // 4가 처음으로 나온 부분은 어디일까요?
-    multiset<int>::iterator start;
-
-    start = mSet.lower_bound(36);
-    cout << "4가 처음으로 나온 부분 : " << *start << endl;
-    */
-
-    // Node(struct)
-    // stack, queue
     std::stack<int> Stack;
+    // Stack.push(10);
+    // Stack.pop(10);
+    // cout << Stack.top() << endl;
+    // cout << Stack.empty() << endl;
 
+    Push(1);
+    Push(2);
+    Push(3);
+
+    cout << "가장 위에 있는 값 : " << Top() << endl;
+    cout << "스택의 크기 " << Size() << endl;
+    cout << "스택이 비어있나요? " << Empty() << endl;
+
+    cout << Pop() << endl;
+    cout << Pop() << endl;
+    cout << Pop() << endl;
+
+    cout << "스택의 크기 " << Size() << endl;
+    cout << "스택이 비어있나요? " << Empty() << endl;
+    */
+
+    // unordered_map 선언
+    /*
+    unordered_map<int, string> uMap;
+    uMap.insert(make_pair(10, "Ten"));
+    uMap.insert(make_pair(1, "One"));
+    uMap.insert(make_pair(7, "Seven"));
+    uMap.insert(make_pair(2, "Two"));
+
+    for (auto iter = uMap.begin(); iter != uMap.end(); iter++)
+    {
+        cout << "uMap의 key : " << iter->first << endl;
+        cout << "uMap의 value : " << iter->second << endl;
+    }
+    */
+
+    // 우선 순위 큐
+    // 큐 컨테이너에 있는 원소 중 가장 큰 값이 TOP 위치에 유지도록
+    // 설정되어 있는 자료구조입니다.
+
+    // 우선 순위 큐의 경우 내부적으로 힙(Heap)이라는 자료구조로
+    // 구성되어 있습니다
+
+    // 우선 순위 큐를 선언합니다.
+    priority_queue<int> pQueue;
+    pQueue.push(3);
+    pQueue.push(1);
+    pQueue.push(7);
+    pQueue.push(5);
+    pQueue.push(2);
+
+    cout << "큐의 사이즈 : " << pQueue.size() << endl;
+
+    // pQueue.empty() = 0 (false) <- 데이터가 있을 때 
+    // pQueue.empty() = 1 (true) <- 데이터가 없을 때
+    while (pQueue.empty() == false) // pQueue.empty가 true가 될 때까지 반복합니다.
+    {
+        // Top
+        cout << pQueue.top() << endl; // 제일 위에 있는 값을 출력합니다.
+        pQueue.pop(); // 제일 위에 있는 원소를 뺍니다.
+    }
 
     return 0;
 }
