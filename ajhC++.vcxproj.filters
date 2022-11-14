@@ -71,5 +71,8 @@
     <ClInclude Include="22.11.10(deque).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.11(우선 순위 큐).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
