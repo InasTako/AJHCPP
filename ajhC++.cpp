@@ -1,110 +1,67 @@
 #include<iostream>
 using namespace std;
 
-
-int buffer[5] = { 0, };
-
-class Queue
+// 클래스의 메모리 구조
+class Object
 {
-private:
-    int rear = -1;
-    int front = -1;
+// 클래스 오프셋
+/*
+// 동일한 오브젝트 안에서 오브젝트 처음부터 주어진 요소나 
+// 지점까지의 변위차를 정수형으로 나타내는 값입니다.
+   
+// ex) A[6] = "ABCDE";
+// C라는 값은 A 시작점에서 2의 오프셋을 가지는 값입니다.
+*/
+
 
 public:
-    void BufferPrint()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            cout << buffer[i] << endl;
-        }
-    }
-    bool Empty()
-    {
-        if (front == rear)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    bool IsFull()
-    {
-        if (rear == 4)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    char charData; // 1byte
+    int intData;   // 4byte
+    double doubleData; // 8byte  
 
-    void Fush(int value)
-    {
-        if (IsFull() == true)
-        {   // 데이터가 다 차있는 상태라면 데이터를 못 넣도록 해야합니다.
-            cout << "데이터를 넣을 수 없습니다." << endl;
-        }
-        else
-        {
-            buffer[++rear] = value;
-        }
-    }
-    int Pop()
-    {
-        // rear == front
-        if (Empty() == true)
-        {   // 컨테이너에 데이터가 없다면 데이터를 못 꺼내도록 해야합니다.
-            cout << "큐가 비었습니다." << endl;
-            return 0;
-        }
-        else
-        {
-            // 출력할 값을 잠깐 보관하는 단계입니다.
-            int temp = buffer[++front];
-                   
-            buffer[front] = 0;
+    // static 변수는 클래스 내부에 메모리가 잡히지 않습니다.
+    static int staticData; // 4byte
 
-            return temp; // return 값을 반환하는 기능도 하면서 함수를 종료시켜 줍니다.
-        }
-        
+    void StaticDataFunction()
+    {
+        staticData++;
     }
-
-    // push == Enqueue
-    // pop == Dequeue
 
 };
 
+// 클래스 내부에 있는 static 변수는 클래스 외부에서
+// 전역 변수처럼 초기화를 해야합니다.
+int Object::staticData = 0;
+
 int main()
 {
-    // 큐
-    // FIFO
-    // 먼저 들어온 데이터가 먼저 나가는 구조입니다.
-     
-    // 선형 큐
-    // 선형 큐의 문제점
-    // 데이터를 추가할 때 index의 값을 감소하지 않고 증가만 시키기 때문에 
-    // 실제로 앞에 있는 데이터가 없을 때도 큐에 데이터를 저장할 수 없는 형태가 나타납니다.
+    Object object1;
+    Object object2;
+    Object object3;
 
-    Queue queue;
-    queue.Fush(1);
-    queue.Fush(2);
-    queue.Fush(3);
-    queue.Fush(4);
-    queue.Fush(5);
-    queue.BufferPrint();
+    object1.StaticDataFunction();
+    object2.StaticDataFunction();
+    object3.StaticDataFunction();
 
-    cout << queue.Pop() << endl;
-    cout << queue.Pop() << endl;
-    cout << queue.Pop() << endl;
-    cout << queue.Pop() << endl;
-    cout << queue.Pop() << endl;
-    queue.BufferPrint();
+    cout << Object::staticData << endl;
 
-    queue.Fush(10);
-    // 원형 큐
+    // 클래스의 메모리
+    /*
+    object.charData = 'A';
+    object.intData = 10;
+    object.doubleData = 30.5;
+
+    // 클래스의 메모리 크기를 결저하는 것은 멤버 변수 중에서
+    // 가장 큰 자료형의 배수가 되도록 설정합니다.
+    cout << "Object의 클래스의 크기 : " << sizeof(object) << endl;
+    */
+
+    // 클래스의 오프셋
+    /*
+    cout << (int)(&(((Object*)0)->charData)) << endl;
+    cout << (int)(&(((Object*)0)->intData)) << endl;
+    cout << (int)(&(((Object*)0)->doubleData)) << endl;
+    */
 
 
     return 0;
