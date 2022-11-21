@@ -1,68 +1,51 @@
 #include<iostream>
 using namespace std;
 
-// 클래스의 메모리 구조
-class Object
+
+class Node
 {
-// 클래스 오프셋
-/*
-// 동일한 오브젝트 안에서 오브젝트 처음부터 주어진 요소나 
-// 지점까지의 변위차를 정수형으로 나타내는 값입니다.
-   
-// ex) A[6] = "ABCDE";
-// C라는 값은 A 시작점에서 2의 오프셋을 가지는 값입니다.
-*/
-
-
 public:
-    char charData; // 1byte
-    int intData;   // 4byte
-    double doubleData; // 8byte  
-
-    // static 변수는 클래스 내부에 메모리가 잡히지 않습니다.
-    static int staticData; // 4byte
-
-    void StaticDataFunction()
-    {
-        staticData++;
-    }
+    int data;
+    Node * next;
 
 };
 
-// 클래스 내부에 있는 static 변수는 클래스 외부에서
-// 전역 변수처럼 초기화를 해야합니다.
-int Object::staticData = 0;
-
 int main()
 {
-    Object object1;
-    Object object2;
-    Object object3;
+    // 연결 리스트
 
-    object1.StaticDataFunction();
-    object2.StaticDataFunction();
-    object3.StaticDataFunction();
+    // 1. 단방향 연결 리스트
+    Node * head = NULL;
 
-    cout << Object::staticData << endl;
+    // 00B056A2 <- 00B056A2
+    Node * node1 = new Node;
+    head = node1;
+    node1->data = 10;
 
-    // 클래스의 메모리
-    /*
-    object.charData = 'A';
-    object.intData = 10;
-    object.doubleData = 30.5;
+    // 00AD15D8 <- 00AD15D8
+    Node * node2 = new Node;
+    head->next = node2;
+    node2->data = 20;
 
-    // 클래스의 메모리 크기를 결저하는 것은 멤버 변수 중에서
-    // 가장 큰 자료형의 배수가 되도록 설정합니다.
-    cout << "Object의 클래스의 크기 : " << sizeof(object) << endl;
-    */
+    Node* node3 = new Node;
+    head->next = node3;
+    node3->data = 30;
 
-    // 클래스의 오프셋
-    /*
-    cout << (int)(&(((Object*)0)->charData)) << endl;
-    cout << (int)(&(((Object*)0)->intData)) << endl;
-    cout << (int)(&(((Object*)0)->doubleData)) << endl;
-    */
+    node3->next = NULL;
 
+    Node* currentPtr = head;
+
+    while (currentPtr != NULL)
+    {
+        cout << currentPtr->data << endl;
+        currentPtr = currentPtr->next;
+    }
+
+
+
+    // 2. 원형 연결 리스트
+
+    // 3. 양방향 연결 리스트
 
     return 0;
 }

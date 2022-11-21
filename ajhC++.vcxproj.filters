@@ -80,5 +80,8 @@
     <ClInclude Include="22.11.15(원형 큐).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.16%28클래스 메모리의 구조%29.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
