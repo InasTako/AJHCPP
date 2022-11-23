@@ -151,6 +151,8 @@
     <ClInclude Include="22.11.14(선형 큐).h" />
     <ClInclude Include="22.11.15(원형 큐).h" />
     <ClInclude Include="22.11.16%28클래스 메모리의 구조%29.h" />
+    <ClInclude Include="22.11.21(연결리스트).h" />
+    <ClInclude Include="22.11.22(리스트 추가 및 삭제).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

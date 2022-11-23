@@ -83,5 +83,11 @@
     <ClInclude Include="22.11.16%28클래스 메모리의 구조%29.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.21(연결리스트).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="22.11.22(리스트 추가 및 삭제).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
