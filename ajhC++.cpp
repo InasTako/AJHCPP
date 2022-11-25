@@ -1,82 +1,81 @@
 #include<iostream>
 using namespace std;
 
-struct Node
-{
-    int data;
-    Node * prev;
-    Node * next;
-};
-
-Node * head = NULL;
-Node * tail = NULL;
-
-void Insert(Node* targetNode, int value)
-{
-    Node * newnode = new Node;
-    newnode->data = value;
-    newnode->prev = targetNode;
-    newnode->next = targetNode->next;
-
-    targetNode->next->prev = newnode;
-    targetNode->next = newnode;
-}
-
-void Frontoutput()
-{
-    Node * currentNode = head->next;
-
-    while (currentNode != tail)
-    {
-        cout << currentNode->data << endl;
-        currentNode = currentNode->next;
-    }
-}
-void Backoutput()
-{
-    Node * currentNode = tail->prev;
-
-    while (currentNode != head)
-    {
-        cout << currentNode->data << endl;
-        currentNode = currentNode->prev;
-    }
-}
-
-void Remove(Node* targetNode)
-{
-    Node * deleteNode = targetNode->next;
-    if (deleteNode == NULL)
-    {
-        return;
-    }
-    deleteNode->next->prev = targetNode;
-    targetNode->next = deleteNode->next;
-
-    delete deleteNode;
-}
 
 int main()
 {
-    // 더미 노드1
-    head = new Node;
-    // 더미 노드2
-    tail = new Node;
+    // 삽입 정렬
+    /*
+    // 배열의 모든 요소를 앞에서부터 차례대로 이미 정렬된
+    // 배열 부분과 비교하여, 자신의 위치를 찾아 삽입으로써
+    // 정렬을 완성하는 알고리즘입니다.
 
-    head->next = tail;
-    head->prev = NULL;
-   
-    tail->prev = head;
-    tail->next = NULL;
+    int array[5] = { 5,3,7,1,2 };
+    int key = 0;
+    int j = 0;
+    for(int i = 1; i < 5; i++)
+    {
+        int key = array[i];
+        // j가 0일 때 까지 반복
+        for(j = i - 1; j >= 0 && array[j] > key; j--)
+        {
+            array[j+1] = array[j];
+        }
+        // j = -1
+        array[j + 1] = key;
+    }
+    for (int i = 0; i < 5; i++)
+    {
+    cout << array[i] << endl;
+    }
+    */
 
-    Insert(head, 10);
-    Insert(head, 20);
-    Insert(head, 30);
+    // 단어 공부
+    string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    Remove(head);
+    int array[26] = { 0, };
+    int max = 0;
+    int temp = 0;
+    char character = NULL;
 
-    Frontoutput();
-    Backoutput();
+    string data;
+    cin >> data;
+
+    for (int i = 0; i < data.length(); i++)
+    {
+        for (int j = 0; j < Alphabet.length(); j++)
+        {
+            if (Alphabet[j] || alphabet[j] == data[i])
+            {
+                array[j]++;
+            }
+        }
+    }
+    for (int i = 0; i < 26; i++)
+    {
+        if (array[i] > max)
+        {
+            max = array[i];
+            character = Alphabet[i];
+        }
+    }
+    for (int i = 0; i < 26; i++)
+    {
+        if (max == array[i])
+        {
+            temp++;
+        }
+    }
+    if (temp == 1)
+    {
+        cout << character << endl;
+    }
+    else
+    {
+        cout << "?" << endl;
+    }
+
 
     return 0;
 }
