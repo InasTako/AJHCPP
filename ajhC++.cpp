@@ -1,81 +1,68 @@
 #include<iostream>
 using namespace std;
 
-
-int main()
+struct Node
 {
-    // 삽입 정렬
-    /*
-    // 배열의 모든 요소를 앞에서부터 차례대로 이미 정렬된
-    // 배열 부분과 비교하여, 자신의 위치를 찾아 삽입으로써
-    // 정렬을 완성하는 알고리즘입니다.
+    int data;
+    Node * next;
+};
 
-    int array[5] = { 5,3,7,1,2 };
-    int key = 0;
-    int j = 0;
-    for(int i = 1; i < 5; i++)
+Node * FrontInsert(Node * head, int value)
+{
+    Node * newnode = new Node;
+    newnode->data = value;
+    
+    if (head == NULL)
     {
-        int key = array[i];
-        // j가 0일 때 까지 반복
-        for(j = i - 1; j >= 0 && array[j] > key; j--)
-        {
-            array[j+1] = array[j];
-        }
-        // j = -1
-        array[j + 1] = key;
-    }
-    for (int i = 0; i < 5; i++)
-    {
-    cout << array[i] << endl;
-    }
-    */
-
-    // 단어 공부
-    string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    string alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-    int array[26] = { 0, };
-    int max = 0;
-    int temp = 0;
-    char character = NULL;
-
-    string data;
-    cin >> data;
-
-    for (int i = 0; i < data.length(); i++)
-    {
-        for (int j = 0; j < Alphabet.length(); j++)
-        {
-            if (Alphabet[j] || alphabet[j] == data[i])
-            {
-                array[j]++;
-            }
-        }
-    }
-    for (int i = 0; i < 26; i++)
-    {
-        if (array[i] > max)
-        {
-            max = array[i];
-            character = Alphabet[i];
-        }
-    }
-    for (int i = 0; i < 26; i++)
-    {
-        if (max == array[i])
-        {
-            temp++;
-        }
-    }
-    if (temp == 1)
-    {
-        cout << character << endl;
+        head = newnode;
+        newnode->next = head;
     }
     else
     {
-        cout << "?" << endl;
+        newnode->next = head->next;
+        head->next = newnode;
     }
 
+    return head;
+}
+
+Node * BackInsert(Node* head, int value)
+{
+    Node * newnode = new Node;
+    newnode->data = value;
+
+    if (head == NULL)
+    {
+        head = newnode;
+        newnode->next = head;
+    }
+    else
+    {
+        newnode->next = head->next;
+        head->next = newnode;
+        head = newnode;
+    }
+
+
+    return head;
+}
+
+int main()
+{
+    // 원형 연결 리스트
+    Node * head = NULL;
+    
+    head = FrontInsert(head, 100);
+    head = FrontInsert(head, 200);
+    head = BackInsert(head, 500);
+    
+    Node* currentNode = head->next;
+    while (currentNode != head)
+    {
+        cout << currentNode->data << endl;
+        currentNode = currentNode->next;    
+    }
+    cout << currentNode->data << endl;
 
     return 0;
 }

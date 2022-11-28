@@ -154,6 +154,7 @@
     <ClInclude Include="22.11.21(연결리스트).h" />
     <ClInclude Include="22.11.22(리스트 추가 및 삭제).h" />
     <ClInclude Include="22.11.23(이중 연결 리스트).h" />
+    <ClInclude Include="22.11.25(삽입 정렬).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
