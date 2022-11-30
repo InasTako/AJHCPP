@@ -1,68 +1,38 @@
 #include<iostream>
 using namespace std;
 
-struct Node
-{
-    int data;
-    Node * next;
-};
 
-Node * FrontInsert(Node * head, int value)
-{
-    Node * newnode = new Node;
-    newnode->data = value;
-    
-    if (head == NULL)
-    {
-        head = newnode;
-        newnode->next = head;
-    }
-    else
-    {
-        newnode->next = head->next;
-        head->next = newnode;
-    }
-
-    return head;
-}
-
-Node * BackInsert(Node* head, int value)
-{
-    Node * newnode = new Node;
-    newnode->data = value;
-
-    if (head == NULL)
-    {
-        head = newnode;
-        newnode->next = head;
-    }
-    else
-    {
-        newnode->next = head->next;
-        head->next = newnode;
-        head = newnode;
-    }
-
-
-    return head;
-}
 
 int main()
 {
-    // 원형 연결 리스트
-    Node * head = NULL;
-    
-    head = FrontInsert(head, 100);
-    head = FrontInsert(head, 200);
-    head = BackInsert(head, 500);
-    
-    Node* currentNode = head->next;
-    while (currentNode != head)
+    // 과제 안 내신 분?
+    int array[30];
+    int temparray[30];
+
+    for (int i = 0; i < 30; i++)
     {
-        cout << currentNode->data << endl;
-        currentNode = currentNode->next;    
+        array[i] = i+1;
+
     }
-    cout << currentNode->data << endl;
+    for (int i = 0; i < 28; i++)
+    {
+        cin >> temparray[i];
+    }
+    for (int i = 0; i < 30; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            if (array[i] == array[j])
+            {
+                array[i] = 0;
+            }
+        }
+    }
+    for (int i = 0; i < 30; i++)
+    {
+        if(array[i] != 0)
+        cout << array[i] << endl;
+    }
 
     return 0;
 }

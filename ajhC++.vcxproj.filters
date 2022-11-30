@@ -95,5 +95,11 @@
     <ClInclude Include="22.11.25(삽입 정렬).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.11.28(원형 연결 리스트).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="22.11.29%28이진 트리와 트리의 순회%29.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
