@@ -2,37 +2,29 @@
 using namespace std;
 
 
-
 int main()
 {
-    // 과제 안 내신 분?
-    int array[30];
-    int temparray[30];
+    // 계수 정렬
+    /*
+    // 데이터의 값을 직접 비교하지 않고, 단순하게 각 숫자가
+    // 몇 개 있는지 갯수를 세어 저장한 다음 정렬하는 알고리즘입니다.
+    
+    int array[10] = {1, 5, 4, 1, 2, 4, 3, 3, 3, 5};
+    int count[5] = {0, };
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 10; i++)
     {
-        array[i] = i+1;
-
+        count[array[i] - 1] += 1;
     }
-    for (int i = 0; i < 28; i++)
+    for (int i = 0; i < 5; i++)
     {
-        cin >> temparray[i];
-    }
-    for (int i = 0; i < 30; i++)
-    {
-        for (int j = 0; j < 30; j++)
+        for (int j = 0; j < count[i]; j++)
         {
-            if (array[i] == array[j])
-            {
-                array[i] = 0;
-            }
+            cout << i + 1 << endl;
         }
     }
-    for (int i = 0; i < 30; i++)
-    {
-        if(array[i] != 0)
-        cout << array[i] << endl;
-    }
+    */
+
 
     return 0;
 }

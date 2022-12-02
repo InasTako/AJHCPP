@@ -101,5 +101,8 @@
     <ClInclude Include="22.11.29%28이진 트리와 트리의 순회%29.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="22.12.01(힙).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
