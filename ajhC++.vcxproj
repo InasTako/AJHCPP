@@ -158,6 +158,7 @@
     <ClInclude Include="22.11.28(원형 연결 리스트).h" />
     <ClInclude Include="22.11.29%28이진 트리와 트리의 순회%29.h" />
     <ClInclude Include="22.12.01(힙).h" />
+    <ClInclude Include="22.12.02(계수 정렬).h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
